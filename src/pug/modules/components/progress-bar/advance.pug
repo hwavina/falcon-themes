@@ -1,0 +1,26 @@
+extends ../../../layouts/LayoutComponent
+
+block prepend scripts
+  script(src=`https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js`)
+  script(src=`${CWD}vendors/progressbar/progressbar.min.js`)
+
+block append content
+  +PageHeader({ title: 'Advance Progressbar' })
+    p.mt-2 #{name} uses <b>Progressbar.js</b> for advance progressbar. With ProgressBar.js, it's easy to create responsive and stylish progress bars for the web. Progress visualizers are available in theme: 
+      code .progress-circle
+    a(href='https://kimmobrunfeldt.github.io/progressbar.js/' target='_blank').btn.btn-link.ps-0.btn-sm Doc for progressbar
+      span.fas.fa-chevron-right.ms-1.fs--2
+
+  +ComponentCard({
+    title: 'Example',
+    anchor: true,
+    }).mb-3
+      .progress-circle.mb-4(data-options!={progress: 96})
+
+  .card
+    .card-header
+      h5.mb-0 Javascript
+    .card-body.bg-light
+      +ComponentCardLib
+        script(src=`vendors/progressbar.js/progressbar.min.js`)
+

@@ -1,0 +1,135 @@
+/* -------------------------------------------------------------------------- */
+/*                                   Echarts                                  */
+/* -------------------------------------------------------------------------- */
+[data-echarts]{
+  width: 3.625rem;
+  height: 1rem;
+}
+
+.echart-bar-weekly-sales {
+  width: 8.5rem;
+}
+.echart-bar-weekly-sales-smaller-width {
+  width: 6.5rem;
+}
+.echart-line-total-order {
+  width: 8.625rem;
+  height: 5rem;
+}
+.echart-line-total-sales {
+  min-height: 18.4375rem;
+  @include media-breakpoint-up(lg) {
+    min-height: 15.625rem;
+  }
+}
+.echart-bar-top-products {
+  min-height: 18.4375rem;
+  @include media-breakpoint-up(xxl) {
+    min-height: 15.625rem;
+  }
+}
+.echart-bar-top-products-ecommerce {
+  min-height: 18.4375rem;
+  @include media-breakpoint-up(xxl) {
+    min-height: 23.625rem;
+  }
+}
+.echart-market-share , .echart-product-share {
+  width: 6.625rem;
+  height: 6.625rem;
+}
+.echart-world-map {
+  min-height: 26.25rem;
+}
+.echart-line-total-sales-ecommerce {
+  height: 18.625rem;
+}
+.echart-radar-sales-by-pos-location{
+  min-width: 18rem;
+  min-height: 16rem;
+  max-height: 22rem;
+
+}
+.echart-line-returning-customer-rate {
+  min-width: 16rem;
+  min-height: 20rem;
+}
+
+// Project management 
+.echart-candle-chart {
+  height: 20.5rem;
+  .firefox &{
+    min-height: 21.5rem;
+  }
+  @include media-breakpoint-down(lg) {
+    min-height: 25rem;
+    
+  }
+  @include media-breakpoint-down(sm) {
+    min-height: 18.75rem;
+  }
+}
+.echart-gross-revenue-chart{
+  min-height: 14.375rem;
+}
+
+.echart-active-user-chart{
+  height:3.125rem;
+}
+// Project management new scss 
+.echart-bar-report-for-this-week {
+  min-height: 18.4375rem;
+  @include media-breakpoint-up(xxl) {
+    min-height: 17.6875rem;
+  }
+}
+
+[data-echarts]{
+  width: 3.625rem;
+  height: 1rem;
+}
+
+.total-order-ecommerce{
+  width: 9rem !important;
+  height: 4rem !important;
+}
+// analytics style
+
+.echart-audience{
+  min-height: 21.25rem;
+  .container-fluid &{
+    min-height: 25rem;
+  }
+}
+
+.echart-session-by-browser,.echart-session-by-country-map{
+  min-height:12.5rem;
+}
+.echart-session-by-country{
+  min-height:13.125rem;
+}
+.echart-active-users-report-container{
+  
+  @include media-breakpoint-up(md) {
+    width:calc(100% - 120px);
+  }
+}
+.echart-active-users-report{
+  min-height: 16.25rem;
+}
+
+.echart-bounce-rate{
+  min-height: 20rem;
+}
+
+.echart-traffic-channels{
+  min-height: 21.875rem;
+}
+
+.echart-users-by-time{
+  min-height: 24.75rem;
+}
+.echart-goal-charts{
+  height:1.875rem;
+  width:100%;
+}

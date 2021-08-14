@@ -1,0 +1,252 @@
+include Search
+
+mixin LinkLooper(config)
+  if config.title
+    p.nav-link.text-700.mb-0.fw-bold=config.title
+  each page in config.vars
+    - var pageName = page.label ? page.label : page.name
+    if config.dropdownItem
+      a.dropdown-item.link-600.fw-medium(href=page.name !== 'modal' ? `${CWD}${page.path}.html` : `${CWD}${page.path}` data-bs-toggle=page.name ==="modal" ? 'modal' : false)
+        +cleanText(pageName)
+        if page.badge
+          span.badge.rounded-pill.ms-2(class=`badge-soft-${page.badge.type}`)=page.badge.text
+
+    else
+      a.nav-link.py-1.link-600.fw-medium(href=page.name !== 'modal' ? `${CWD}${page.path}.html` : `${CWD}${page.path}` data-bs-toggle=page.name ==="modal" ? 'modal' : false)
+        +cleanText(pageName)
+        if page.badge
+          span.badge.rounded-pill.ms-2(class=`badge-soft-${page.badge.type}`)=page.badge.text
+
+
+
+mixin NewTopNav(vars)
+  ul.navbar-nav(data-top-nav-dropdowns)
+    each item,index in vars.combo? sitemap.slice(0,5) : sitemap
+      li.nav-item.dropdown
+        if item.label
+          a.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false' id=`${item.label}s`)
+            +cleanText(item.label)
+        .dropdown-menu.dropdown-menu-card.border-0.mt-0(aria-labelledby=id=`${item.label}s`)
+          case item.label
+            when 'dashboard'
+              .bg-white.dark__bg-1000.rounded-3.py-2
+                +LinkLooper({dropdownItem: true,vars:item.pages[0].pages})
+            when 'app'
+              - var routesCollection = [];
+              -
+                item.pages.map((page)=>{
+                  if(page.pages){
+                    page.pages.map((childrenPage)=>{
+                      if(childrenPage.pages){
+                        childrenPage.pages.map((grandChild)=>{
+                          routesCollection.push(grandChild)
+                        })
+                      } else {
+                        routesCollection.push(childrenPage)
+                      }
+                    })
+                  } else{
+                    return routesCollection.push(page)
+                  }
+                })
+              .card.navbar-card-app.shadow-none.dark__bg-1000
+                .card-body.scrollbar.max-h-dropdown
+                  img(src=`${CWD}assets/img/icons/spot-illustrations/authentication-corner.png`, width="130" alt="").img-dropdown
+                  .row
+                    .col-6.col-md-5
+                      .nav.flex-column
+                        +LinkLooper({vars:routesCollection.slice(0,2)})
+                        +LinkLooper({vars:routesCollection.slice(19, 20)})
+                        +LinkLooper({title:"Email",vars:routesCollection.slice(2,5)})
+                        +LinkLooper({title:"Events",vars:routesCollection.slice(5,8)})
+                        +LinkLooper({title:"Social",vars:routesCollection.slice(20,24)})
+                    .col-6.col-md-4
+                      .nav.flex-column
+                        +LinkLooper({title:"E-Commerce",vars:routesCollection.slice(8,19)})
+
+
+            when 'pages'
+              - var routesCollection = [];
+              -
+                item.pages.map((page)=>{
+                  if(page.pages){
+                    page.pages.map((childrenPage)=>{
+                      if(childrenPage.pages){
+                        childrenPage.pages.map((grandChild)=>{
+                          routesCollection.push(grandChild)
+                        })
+                      } else {
+                        routesCollection.push(childrenPage)
+                      }
+                    })
+                  } else{
+                    return routesCollection.push(page)
+                  }
+                })
+
+              .card.navbar-card-pages.shadow-none.dark__bg-1000
+                .card-body.scrollbar.max-h-dropdown
+                  img(src=`${CWD}assets/img/icons/spot-illustrations/authentication-corner.png`, width="130" alt="").img-dropdown
+
+                  .row
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Simple Auth",vars:routesCollection.slice(2,9)})
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Card Auth",vars:routesCollection.slice(9,16)})
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Split Auth",vars:routesCollection.slice(16,23)})
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Other Auth",vars:routesCollection.slice(23,25)})
+                        +LinkLooper({title:"Miscellaneous",vars:routesCollection.slice(34,37)}) 
+                        
+                  .row
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"User",vars:routesCollection.slice(25,27)})
+
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Pricing",vars:routesCollection.slice(27,29)})
+                        
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Errors",vars:routesCollection.slice(32,34)})
+
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Others",vars:routesCollection.slice(0,2)})
+                        
+            when 'modules'
+              - var routesCollection = [];
+              -
+                item.pages.map((page)=>{
+                  if(page.pages){
+                    page.pages.map((childrenPage)=>{
+                      if(childrenPage.pages){
+                        childrenPage.pages.map((grandChild)=>{
+                          routesCollection.push(grandChild)
+                        })
+                      } else {
+                        routesCollection.push(childrenPage)
+                      }
+                    })
+                  } else{
+                    return routesCollection.push(page)
+                  }
+                })
+              .card.navbar-card-components.shadow-none.dark__bg-1000
+                .card-body.scrollbar.max-h-dropdown
+                  img(src=`${CWD}assets/img/icons/spot-illustrations/authentication-corner.png`, width="130" alt="").img-dropdown
+
+                  .row
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Components",vars:routesCollection.slice(25,36)})
+                    .col-6.col-xxl-3
+                      .nav.flex-column.mt-md-4.pt-md-1
+                        +LinkLooper({vars:routesCollection.slice(36,47)})
+                    .col-6.col-xxl-3
+                      .nav.flex-column.mt-xxl-4.pt-xxl-1
+                        +LinkLooper({vars:routesCollection.slice(47,58)})
+                    .col-6.col-xxl-3
+                      .nav.flex-column.mt-xxl-4.pt-xxl-1
+                        +LinkLooper({vars:routesCollection.slice(58,69)})
+
+                  .row
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Forms",vars:routesCollection.slice(0,15)})
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Tables",vars:routesCollection.slice(15,18)})
+                        +LinkLooper({title:"Charts",vars:routesCollection.slice(18,20)})
+                        +LinkLooper({title:"Icons",vars:routesCollection.slice(20,24)})
+                        +LinkLooper({title:"Maps",vars:routesCollection.slice(24,26)})
+                    .col-6.col-xxl-3
+                      .nav.flex-column
+                        +LinkLooper({title:"Utilities",vars:routesCollection.slice(69,82)})
+                    .col-6.col-xxl-3
+                      .nav.flex-column.mt-xxl-4.pt-xxl-1
+                        +LinkLooper({vars:routesCollection.slice(82,86)})
+                        +LinkLooper({title:"Others",vars:routesCollection.slice(86,87)})
+
+            when 'documentation'
+              - var routesCollection = [];
+              -
+                item.pages.map((page)=>{
+                  if(page.pages){
+                    page.pages.map((childrenPage)=>{
+                      if(childrenPage.pages){
+                        childrenPage.pages.map((grandChild)=>{
+                          routesCollection.push(grandChild)
+                        })
+                      } else {
+                        routesCollection.push(childrenPage)
+                      }
+                    })
+                  } else{
+                    return routesCollection.push(page)
+                  }
+                })
+              .bg-white.dark__bg-1000.rounded-3.py-2
+                +LinkLooper({dropdownItem: true, vars:routesCollection})
+
+            default
+              p You have #{friends} friends
+
+mixin NavbarSearch
+  ul.navbar-nav.align-items-center.d-none.d-lg-block
+    li.nav-item
+      +Search('Search...')
+
+mixin NavbarBrand(config)
+  - var config = Object.assign({ image: true }, config)
+  a(href=`${CWD}${paths['default-dashboard']}`).navbar-brand&attributes(attributes)
+    if config.image
+      .d-flex.align-items-center(class=config.wrapperClass)
+        +Logo('falcon')
+    else
+      span(class=`${config.color}`) #{name}
+
+mixin NavbarToggleIcon(config)
+  = '\n'
+  button.btn.navbar-toggler-humburger-icon&attributes(attributes)
+    span.navbar-toggle-icon
+      span.toggle-line
+  = '\n'
+
+mixin NavbarIcons
+  ul.navbar-nav.navbar-nav-icons.ms-auto.flex-row.align-items-center
+    //- li.nav-item
+      a.nav-link.settings-popover(href=`#settings-modal` data-bs-toggle="modal")
+        span.ripple
+        span.fa-spin.position-absolute.all-0.d-flex.flex-center
+          span.icon-spin.position-absolute.all-0.d-flex.flex-center
+            svg(width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg')
+              path(d='M19.7369 12.3941L19.1989 12.1065C18.4459 11.7041 18.0843 10.8487 18.0843 9.99495C18.0843 9.14118 18.4459 8.28582 19.1989 7.88336L19.7369 7.59581C19.9474 7.47484 20.0316 7.23291 19.9474 7.03131C19.4842 5.57973 18.6843 4.28943 17.6738 3.20075C17.5053 3.03946 17.2527 2.99914 17.0422 3.12011L16.393 3.46714C15.6883 3.84379 14.8377 3.74529 14.1476 3.3427C14.0988 3.31422 14.0496 3.28621 14.0002 3.25868C13.2568 2.84453 12.7055 2.10629 12.7055 1.25525V0.70081C12.7055 0.499202 12.5371 0.297594 12.2845 0.257272C10.7266 -0.105622 9.16879 -0.0653007 7.69516 0.257272C7.44254 0.297594 7.31623 0.499202 7.31623 0.70081V1.23474C7.31623 2.09575 6.74999 2.8362 5.99824 3.25599C5.95774 3.27861 5.91747 3.30159 5.87744 3.32493C5.15643 3.74527 4.26453 3.85902 3.53534 3.45302L2.93743 3.12011C2.72691 2.99914 2.47429 3.03946 2.30587 3.20075C1.29538 4.28943 0.495411 5.57973 0.0322686 7.03131C-0.051939 7.23291 0.0322686 7.47484 0.242788 7.59581L0.784376 7.8853C1.54166 8.29007 1.92694 9.13627 1.92694 9.99495C1.92694 10.8536 1.54166 11.6998 0.784375 12.1046L0.242788 12.3941C0.0322686 12.515 -0.051939 12.757 0.0322686 12.9586C0.495411 14.4102 1.29538 15.7005 2.30587 16.7891C2.47429 16.9504 2.72691 16.9907 2.93743 16.8698L3.58669 16.5227C4.29133 16.1461 5.14131 16.2457 5.8331 16.6455C5.88713 16.6767 5.94159 16.7074 5.99648 16.7375C6.75162 17.1511 7.31623 17.8941 7.31623 18.7552V19.2891C7.31623 19.4425 7.41373 19.5959 7.55309 19.696C7.64066 19.7589 7.74815 19.7843 7.85406 19.8046C9.35884 20.0925 10.8609 20.0456 12.2845 19.7729C12.5371 19.6923 12.7055 19.4907 12.7055 19.2891V18.7346C12.7055 17.8836 13.2568 17.1454 14.0002 16.7312C14.0496 16.7037 14.0988 16.6757 14.1476 16.6472C14.8377 16.2446 15.6883 16.1461 16.393 16.5227L17.0422 16.8698C17.2527 16.9907 17.5053 16.9504 17.6738 16.7891C18.7264 15.7005 19.4842 14.4102 19.9895 12.9586C20.0316 12.757 19.9474 12.515 19.7369 12.3941ZM10.0109 13.2005C8.1162 13.2005 6.64257 11.7893 6.64257 9.97478C6.64257 8.20063 8.1162 6.74905 10.0109 6.74905C11.8634 6.74905 13.3792 8.20063 13.3792 9.97478C13.3792 11.7893 11.8634 13.2005 10.0109 13.2005Z' fill='#2A7BE4')
+
+    li.nav-item
+      = '\n'
+      a.nav-link.px-0.notification-indicator.notification-indicator-warning.notification-indicator-fill.fa-icon-wait(href=`${CWD}${paths['shopping-cart']}`)
+        span.fas.fa-shopping-cart(data-fa-transform='shrink-7' style="font-size: 33px;")
+        span.notification-indicator-number 1
+      = '\n'
+    li.nav-item.dropdown
+      = '\n'
+      a#navbarDropdownNotification.nav-link.notification-indicator.notification-indicator-primary.px-0.fa-icon-wait(href='#' role='button' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+        span.fas.fa-bell(data-fa-transform='shrink-6' style="font-size: 33px;")
+
+      .dropdown-menu.dropdown-menu-end.dropdown-menu-card.dropdown-menu-notification(aria-labelledby='navbarDropdownNotification')
+        +CardNotification
+      = '\n'
+    li.nav-item.dropdown
+      a#navbarDropdownUser.nav-link.pe-0(href='#' role='button' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+        +Avatar({img: 'team/3-thumb.png', size: 'xl', status: '', round: 'circle'})
+      .dropdown-menu.dropdown-menu-end.py-0(aria-labelledby='navbarDropdownUser')
+        +CardUserPreferences 
+
+

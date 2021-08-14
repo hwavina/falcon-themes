@@ -1,0 +1,15 @@
+extends ../layouts/LayoutComponent
+include ../mixins/home/dashboard/Dashboard
+
+block append variables
+  - var pageTree = ['navbar-vertical-vibrant']
+
+prepend scripts
+  script(src=`${CWD}vendors/echarts/echarts.min.js`)
+  script(src=`${CWD}vendors/progressbar/progressbar.min.js`)
+
+block navbarVertical
+  +NavbarVertical.navbar-vibrant
+
+append content
+  +Dashboard

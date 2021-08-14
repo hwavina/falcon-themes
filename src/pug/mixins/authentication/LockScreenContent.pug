@@ -1,0 +1,15 @@
+mixin LockScreenContent
+  .row.justify-content-center
+    .col-auto
+      .d-flex.align-items-center
+        +Avatar({ size: '4xl'}).me-4
+        .flex-1
+          h4 Hi! Emma
+          p.mb-0 Enter your password 
+            br
+            | to access the admin.
+      form.mt-4.row.g-0
+        .col
+          input.form-control.me-2(type='password' placeholder="Password" aria-label="User's password" aria-describedby='user-password')
+        .col-4.ps-2
+          button#user-password.btn.btn-primary.d-block.w-100(type='button') Login

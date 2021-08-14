@@ -1,0 +1,17 @@
+mixin TestimonialCard(config)
+  .card.card-body
+    .flex-grow-1
+      h5.fs-1=config.subject
+      p.fs--1.mb-1 by  
+        span=config.name
+        span.mx-1.fas.fa-circle.text-400(data-fa-transform="shrink-10 down-2")
+        span Bootstrap customer
+      .mb-3
+        span.fas.fa-star.text-warning
+        span.fas.fa-star.text-warning
+        span.fas.fa-star.text-warning
+        span.fas.fa-star.text-warning
+        span.fas.fa-star.text-warning
+      p.mb-0!=`“ ${config.review} ”`
+    //- .d-flex.align-items-center
+      img(src=`${CWD}assets/img/logos/bs-5.png` alt="" width='70')

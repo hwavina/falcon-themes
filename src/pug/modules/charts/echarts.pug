@@ -1,0 +1,94 @@
+extends ../../layouts/LayoutComponent
+
+block append variables           
+  - 
+    var pageHeader = {
+      title: 'Echarts',
+      description: 'A powerful, interactive charting and visualization library for browser.',
+      url: `https://echarts.apache.org/en/option.html#title`,
+      linkText: 'Documentation for EChart'
+    }
+
+block prepend scripts
+  script(src=`${CWD}vendors/lodash/lodash.min.js`)
+  script(src=`${CWD}vendors/echarts/echarts.min.js`)
+
+block append content
+  +PageHeader(pageHeader)
+
+
+  .card.mb-3
+    .card-header
+      h5.mb-0 Javascript
+    .card-body.bg-light   
+      +ComponentCardLib
+        script(src=`vendors/echarts/echarts.min.js`)
+  .card.mb-3
+    .card-header
+      h5.mb-0 Getting Started
+    .card-body.bg-light
+      p In #{name} 
+        code echarts.min.js 
+        | have been genereted from Echarts 
+        a(href="https://echarts.apache.org/en/builder.html") Online Builder 
+        | for faster page reload. The file included:
+      h6 Chart
+      ul.ps-card.fs--1
+        li Bar
+        li Line
+        li Pie
+
+      h6 Coordinate Systems
+      ul.ps-card.fs--1
+        li Grid
+
+      h6 Component
+      ul.ps-card.fs--1
+        li Title
+        li Legend
+        li Tooltip
+
+      p If you need more charts or components, you can build your own pack from 
+        a(href="https://echarts.apache.org/en/builder.html") Echarts Online Builder 
+        | or you can downlaod full package using 
+        code npm 
+      +ComponentCardLib
+        | npm i echarts
+
+      p.mt-3.mb-0 Learn 
+        a(href=`${CWD}${paths['doc-plugin']}` target='_blank').btn.btn-link.px-0.btn-sm  How to add a new plugin 
+        |  in #{name}.
+
+
+  .row.g-0
+    .col-12
+      +ComponentCard({
+        title:'Line Chart',
+        anchor:true
+      }).mb-3
+        .echart-line-total-sales(style="min-height: 300px;" data-echart-responsive="true")
+
+    .col-lg-4.pe-lg-2.mb-3
+      +ComponentCard({
+        title:'Doughnut Chart',
+        anchor:true
+      }).mb-3.h-lg-100
+        .d-flex.justify-content-center
+          .echart-market-share(style="height: 242px; width: 242px;" data-echart-responsive="true")    
+
+    .col-lg-8.ps-lg-2
+      +ComponentCard({
+        title:'Bar Chart',
+        anchor:true
+      }).mb-3
+        .echart-bar-top-products(style="height: 300px;" data-echart-responsive="true")
+
+  .card.mb-3
+    .card-header
+      h5.mb-0 Responsive
+    .card-body.bg-light
+      p.mb-0 To responsive Echarts just add 
+        code data-echart-responsive="true" 
+        | in your dom element. #{name} will take the 
+        code true 
+        | value and will resize the charts when container size changes.

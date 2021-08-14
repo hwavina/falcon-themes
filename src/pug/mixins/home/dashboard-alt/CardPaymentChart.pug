@@ -1,0 +1,15 @@
+mixin CardPaymentChart(height = 375)
+  .card.rounded-3.overflow-hidden&attributes(attributes)
+    .card-body.bg-line-chart-gradient.d-flex.flex-column.justify-content-between
+      .row.align-items-center.g-0
+        .col.light
+          h4.text-white.mb-0 Today $764.39
+          p.fs--1.fw-semi-bold.text-white Yesterday 
+            span.opacity-50 $684.87
+        .col-auto.d-none.d-sm-block
+          select.form-select.form-select-sm.mb-3#dashboard-chart-select
+            option(value='all') All Payments
+            option(value='successful' selected) Successful Payments
+            option(value='failed') Failed Payments
+      canvas.mw-100.rounded#chart-line(width=1618, height=height, aria-label='Line chart' role='img')
+

@@ -1,0 +1,69 @@
+/*-----------------------------------------------
+|   Dashboard
+-----------------------------------------------*/
+.file-thumbnail {
+  height: 2.25rem;
+  width: 2.25rem;
+}
+
+.dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: map_get($spacers, 2);
+}
+
+/*-----------------------------------------------
+|             E-commerce
+-----------------------------------------------*/
+.greetings-item{
+  background-color: var(--#{$variable-prefix}white);
+
+  .dark &{
+    background-color: var(--#{$variable-prefix}card-bg);
+  }
+}
+
+/*-----------------------------------------------
+|             Project Management
+-----------------------------------------------*/
+.recent-activity-body-height {
+  height: 25rem;
+}
+
+.table-member-info {
+  min-width: 43rem;
+}
+
+.members-activity {
+  min-height: 22rem;
+}
+
+.table-running-project {
+  min-width: 43rem;
+}
+
+.todo-list-item{
+  .hover-actions{
+    right: 3.5rem;
+    [dir="rtl"] & {
+      right: 3.5rem;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  Analytics                                 */
+/* -------------------------------------------------------------------------- */
+.ask-analytics {
+  @include media-breakpoint-up(md) {
+    max-height: 426px;
+  }
+
+  .ask-analytics-item {
+    @include hover-focus {
+      background: var(--#{$variable-prefix}100);
+    }
+  }
+}

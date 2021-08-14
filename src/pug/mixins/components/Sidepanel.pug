@@ -1,0 +1,81 @@
+mixin SidepanelStructureDescription
+  p&attributes(attributes) #{name} Sidepanel uses Boostrap Modal features to show the panel content. 
+    code .modal-fixed-right 
+    | and 
+    code .modal-dialog-vertical 
+    | classes are used to stick the panel at the right side and animate the panel from right to left.
+
+mixin SidepanelHTML
+  #settings-modal.modal.fade.modal-fixed-right.modal-theme.overflow-hidden(tabindex='-1' role='dialog' aria-labelledby='settings-modal-label' aria-hidden='true' data-options!={autoShow: true, autoShowDelay: 3000, showOnce: true })
+    .modal-dialog.modal-dialog-vertical(role='document')
+      .modal-content.border-0.vh-100.scrollbar
+        .modal-header.modal-header-settings
+          // Header Content
+
+        .modal-body.px-card
+          // Body Content
+
+mixin SidepanelOptionsDescription
+  p&attributes(attributes) You can pass options via 
+    code data-options 
+    | through 
+    code .modal-theme 
+    | element. It will decide whether the panel is shown or remain hidden when the page loads.
+
+mixin SidepanelOptionsDocumentation
+  .table-responsive
+    table.table&attributes(attributes)
+      thead.bg-200.text-900
+        tr
+          th.white-space-nowrap data-options
+          th object
+      tbody
+        tr  
+          td Example
+          td 
+            pre.language-css.
+              data-options={"autoShow": true, "autoShowDelay": 3000, "showOnce": true, "cookieExpireTime": 7200000}}
+  .table-responsive
+    table.table&attributes(attributes)
+      thead.bg-200.text-900
+        tr
+          th.white-space-nowrap Option
+          th.white-space-nowrap Type
+          th.white-space-nowrap Defaults
+          th.white-space-nowrap Description
+      tbody
+        tr  
+          td.white-space-nowrap autoShow
+          td.white-space-nowrap.fs-0 
+            code Boolean
+          td.white-space-nowrap.fs-0 
+            code false
+          td.white-space-nowrap Set 
+            code.fs-0 true 
+            | to make the Slidepanel show automatically after the page is loaded.
+
+        tr
+          td.white-space-nowrap autoShowDelay
+          td.white-space-nowrap.fs-0
+            code Number 
+          td.white-space-nowrap.fs-0  
+            code 0
+          td.white-space-nowrap How much time 
+            i (ms)  
+            | should wait after the page is loaded before showing the Sidepanel. Works only when the autoShow is set true
+        tr
+          td.white-space-nowrap showOnce
+          td.white-space-nowrap.fs-0
+            code Boolean
+          td.white-space-nowrap.fs-0
+            code false
+          td.white-space-nowrap The Sidepanel will show only once - for the first time when a user view the website and remain hidden as per the cookie expiration date.
+        tr
+          td.white-space-nowrap cookieExpireTime
+          td.white-space-nowrap.fs-0 
+            code Number 
+          td.white-space-nowrap.fs-0 
+            code 7200000
+          td.white-space-nowrap After how many time 
+            i (ms)  
+            | the cookie will expired.

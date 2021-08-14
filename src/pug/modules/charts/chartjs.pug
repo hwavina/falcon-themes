@@ -1,0 +1,96 @@
+extends ../../layouts/LayoutComponent
+
+append scripts
+  script(src=`${CWD}vendors/chart/Chart.min.js`)
+
+
+append content
+  +PageHeader({
+      title: 'Chart Js',
+      description: `${theme} uses chart.js - simple yet flexible JavaScript charting for designers & developers`,
+      url: '//chartjs.org/docs/latest/',
+      linkText: 'Chart Js documentations'
+    })
+
+  .card.mb-3
+    .card-header
+      h5.mb-0 Javascript
+    .card-body.bg-light   
+      +ComponentCardLib
+        script(src=`vendors/chart/Chart.min.js`)
+
+  .row.g-3.mb-3 
+    .col-lg-6  
+      +ComponentCard({
+        title:'Bar Chart',
+        anchor:true
+      })
+        canvas.max-w-100#chart-bar(width=1618, height=1000)
+      
+
+    .col-lg-6
+      +ComponentCard({
+        title: 'Scatter Chart',
+        anchor: true,
+      })
+        canvas.max-w-100#scatter-chart(width=1618, height=1000)
+
+  .row.g-3.mb-3
+    .col-lg-6
+    
+      +ComponentCard({
+        title: 'Doughnut Chart',
+        anchor: true,
+      })
+        canvas.max-w-100#doughnut-chart(width=1618, height=1000)
+
+    .col-lg-6
+    
+      +ComponentCard({
+        title: 'Pie Chart',
+        anchor: true,
+      })
+        canvas.max-w-100#pie-chart(width=1618, height=1000)
+
+  .row.g-3.mb-3
+    .col-lg-6
+    
+      +ComponentCard({
+        title: 'Polar Chart',
+        anchor: true,
+      })
+        canvas.max-w-100#polar-chart(width=1618, height=1000)
+
+    .col-lg-6
+    
+      +ComponentCard({
+        title: 'Radar Chart',
+        anchor: true,
+      })
+        canvas.max-w-100#radar-chart(width=1618, height=1000)
+
+  .row.g-3.mb-3
+    .col
+    
+      +ComponentCard({
+        title: 'Combo Chart',
+        anchor: true,
+      })
+        canvas.max-w-100#combo-chart(width=1618, height=1000)
+
+  .row.g-3.mb-3
+    .col-lg-6
+      +ComponentCard({
+        title: 'Advance Line Chart',
+        anchor: true,
+        bodyClass:'bg-light overflow-hidden'
+      })
+        canvas.max-w-100.bg-line-chart-gradient.rounded#chart-line(width=1618, height=1000)
+
+    .col-lg-6
+      +ComponentCard({
+        title: 'Advance Bar Chart',
+        anchor: true,
+      })
+        .bg-line-chart-gradient.px-card.py-2
+          canvas.max-w-100#real-time-user(width=1618, height=1020)
